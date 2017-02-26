@@ -1,7 +1,7 @@
 @extends('layouts.main')   
 {{--  Extende do layout main e aseção content é colocada dentro do content em main --}}
+@section('title', '| Homepage')
 @section('content')
-
       <div class="row">
         <div class="col-md-12">
           <div class="jumbotron">

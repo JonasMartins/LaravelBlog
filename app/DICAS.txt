@@ -1,0 +1,11 @@
+DICAS LARAVEL:
+
+
+Resources como o rails 
+Route::resource('posts', 'PostController');
+
+Criação de controller, resources já inicia com as funções de crud
+php artisan make:controller PostController --resource
+
+Listando rotas:
+php artisan rout:list

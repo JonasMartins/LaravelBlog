@@ -1,0 +1,36 @@
+@extends('layouts.main')
+@section('title', '| Create new Post')
+@section('stylesheets')
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/parsley.css') }}">
+@endsection
+@section('content')
+
+  {{-- Basta carregar os elementos com a ajuda o yield como mostrado acima, no caso, o css e o js abaixo
+  no cabeçalho da form adicionar: data-parsley-validate e nos inputs que precisam ser preenchidos adicionar required
+  isso vai fazer com que sejam feitas as validações pelo servidor 
+
+  Podemmos tbm adicionar max length ou min atravez das constantes toda a documentação em:
+  http://parsleyjs.org/doc/index.html --}}
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <h1>Create a New Post</h1>
+      <hr>
+      <form method="POST" action="{{ route('posts.store') }}" data-parsley-validate>
+        <div class="form-group">
+          <label name="title">Title:</label>
+          <input id="title" name="title" required="" maxlength="255" class="form-control">
+        </div>
+        <div class="form-group">
+          <label name="body">Post Body:</label>
+          <textarea id="body" name="body" rows="10" class="form-control" required=""></textarea>
+        </div>
+        <input type="submit" value="Create Post" class="btn btn-success btn-lg btn-block">
+        <input type="hidden" name="_token" value="{{ Session::token() }}">
+    </form>
+    </div>
+  </div>
+@endsection
+@section('scripts')
+  <script type="text/javascript" src="{{ asset('js/parsley.min.js') }}"></script>
+@endsection

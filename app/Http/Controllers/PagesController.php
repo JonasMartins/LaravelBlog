@@ -16,4 +16,4 @@ class PagesController extends Controller {
 		return view('pages.contact');
 	}
 
-}
+} 

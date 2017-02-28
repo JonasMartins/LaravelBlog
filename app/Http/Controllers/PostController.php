@@ -77,9 +77,17 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, $id){
+       $this->validate($request, [
+        'title' => 'required|max:255',
+        'body' => 'required'
+      ]);
+      $post = Post::find($id);  
+      $post->title = $request->input('title');
+      $post->body = $request->input('body');
+      $post->save();
+      Session::flash('success', 'Post Save!');
+      return redirect()->route('posts.show', $post->id); 
     }
 
     /**

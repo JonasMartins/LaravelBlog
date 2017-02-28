@@ -26,8 +26,23 @@
             <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-primary btn-block">Edit</a>
           </div>
           <div class="col-sm-6">
-          {{-- {!! Html::linkRoute('posts.destroy', 'Delete', array($post->id), array('class' => 'btn btn-danger btn-block')) !!}  --}}
+          {{-- {!! Html::linkRoute('posts.destroy', 'Delete', array($post->id), array('class' => 'btn btn-danger btn-block')) !!}
            <a href="{{ route('posts.destroy', $post->id) }}" class="btn btn-danger btn-block">Delete</a>
+          
+          Com ação:
+
+            <div class="col-sm-6">
+              {!! Form::open(['route' => ['posts.destroy', $post->id], 'method' => 'DELETE']) !!}
+
+              {!! Form::submit('Delete', ['class' => 'btn btn-danger btn-block']) !!}
+
+              {!! Form::close() !!}
+            </div>
+          --}}
+           <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
+            <input type="submit" value="Delete" class="btn btn-danger btn-block">
+            <input type="hidden" name="_token" value="{{ Session::token() }}">
+             {{ method_field('DELETE') }}
           </div>
         </div>
 

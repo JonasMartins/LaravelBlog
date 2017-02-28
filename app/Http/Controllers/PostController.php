@@ -86,7 +86,7 @@ class PostController extends Controller
       $post->title = $request->input('title');
       $post->body = $request->input('body');
       $post->save();
-      Session::flash('success', 'Post Save!');
+      Session::flash('success', 'Post Updated!');
       return redirect()->route('posts.show', $post->id); 
     }
 
@@ -96,8 +96,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+      $post = Post::find($id);
+      $post->delete();
+      Session::flash('success', 'Post Deleted!');
+      return redirect()->route('posts.index');
     }
 }

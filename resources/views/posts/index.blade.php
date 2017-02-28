@@ -35,9 +35,11 @@
                 <td><a href="{{ route('posts.show', $post->id) }}" class="btn btn-default btn-sm">View</a> <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-default btn-sm">Edit</a></td>
               </tr>
             @endforeach
-
           </tbody>
         </table>
+        <div class="text-center">
+          {{ $posts->links() }}
+        </div>
       </div>
     </div>
   </div>

@@ -13,9 +13,9 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
+        $posts = Post::all();
+        return view('posts.index')->withPosts($posts);
     }
 
     /**
@@ -24,7 +24,6 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create(){
-
       return view('posts.create');
     }
 
@@ -56,7 +55,8 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
-      return view('posts.show');
+      $post = Post::find($id);
+      return view('posts.show')->withPost($post);
     }
 
     /**
@@ -65,9 +65,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
-    {
-        //
+    public function edit($id){
+      $post = Post::find($id);
+      return view('posts.edit')->withPost($post); 
     }
 
     /**

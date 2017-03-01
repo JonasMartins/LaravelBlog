@@ -35,6 +35,10 @@
           <input id="title" name="title" required="" maxlength="255" class="form-control">
         </div>
         <div class="form-group">
+          <label name="slug">Slug:</label>
+          <input id="slug" name="slug" required="" minlength="5" maxlength="255" class="form-control">
+        </div>
+        <div class="form-group">
           <label name="body">Post Body:</label>
           <textarea id="body" name="body" rows="10" class="form-control" required=""></textarea>
         </div>

@@ -44,7 +44,7 @@
           --}}
            <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
             <input type="submit" value="Delete" class="btn btn-danger btn-block">
-            <input type="hipen" name="_token" value="{{ Session::token() }}">
+            <input type="hidden" name="_token" value="{{ Session::token() }}">
              {{ method_field('DELETE') }}
           </div>
         </div>

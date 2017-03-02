@@ -13,7 +13,7 @@
         <h5>Published: {{date('M j, Y',strtotime($post->created_at))}}</h5>
         <h5>Updated: {{date('M j, Y',strtotime($post->updated_at))}}</h5>
         <p>{{ substr($post->body, 0, 300)}}{{ strlen($post->body) > 300 ? " ...":""}}</p>
-        <a href="{{ route('blog.single', $post->id) }}">Read More</a>
+        <a href="{{ route('blog.single', $post->slug) }}">Read More</a>
       </div>
   </div>
   <div class="row">

@@ -45,7 +45,9 @@ class PostController extends Controller
       $post->title = $request->title;
       $post->slug = $request->slug;
       $post->body = $request->body;
-      $post->save();
+
+      $request->user()->posts()->save($post);
+
       Session::flash('success', 'Post Save!');
       return redirect()->route('posts.show', $post->id);
     }
@@ -97,7 +99,7 @@ class PostController extends Controller
       $post->title = $request->input('title');
       $post->slug = $request->input('slug');
       $post->body = $request->input('body');
-      $post->save();
+      $post->update();
       Session::flash('success', 'Post Updated!');
       return redirect()->route('posts.show', $post->id); 
     }

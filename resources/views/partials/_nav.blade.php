@@ -9,13 +9,20 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">Laravel Blog</a>
+          <a class="navbar-brand" href="/">Laravel Blog</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li><a href="/">Home</a></li>
+            {{-- 
+              /**
+               * Auth::check() -> The user is logged in, then he can go to his main home page
+               */
+             --}}
+            @if (Auth::check())  
+             <li><a href="/home">Home</a></li>
+            @endif
             <li><a href="/blog">Blog</a></li>
             <li><a href="/about">About</a></li>
             <li><a href="/contact">Contact</a></li>
@@ -31,6 +38,8 @@
                 {{ Auth::user()->name }} <span class="caret"></span>
               </a>
                <ul class="dropdown-menu" role="menu">
+                  <li><a href="{{route('posts.index')}}">Posts</a></li>
+                  <li role="separator" class="divider"></li>
                   <li>
                     <a href="{{ route('logout') }}"
                         onclick="event.preventDefault();

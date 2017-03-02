@@ -3,18 +3,22 @@
 @section('title', '| Homepage')
 @section('content')
       <div class="row">
-        <div class="col-md-12">
+        <div class="col-md-10 col-md-offset-1">
           <div class="jumbotron">
             <h1>Welcome to My Blog!</h1>
-            <p class="lead">Thank you so much for visiting. This is my test website built with Laravel. Please read my popular post!</p>
-            <p><a class="btn btn-primary btn-lg" href="#" role="button">Popular Post</a></p>
+            <p class="lead">Thank you so much for visiting. This is my test website built with Laravel. Create an My Blog! Account and share your posts worldwide! 
+            </p>
+
+            @if (Auth::guest())
+              <a href="{{ route('register') }}" class="btn btn-primary btn-lg">Register</a>
+            @endif
           </div>
         </div>
       </div>
       <!-- end of header .row -->
 
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6 col-md-offset-1">
         @foreach($posts as $post)
 
           <div class="post">
@@ -29,7 +33,7 @@
 
         </div>
 
-        <div class="col-md-3 col-md-offset-1">
+        <div class="col-md-2 col-md-offset-1">
           <h2>Sidebar</h2>
         </div>
       </div>

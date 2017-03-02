@@ -2,7 +2,7 @@
 @section('title', '| Contact')
 @section('content')
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-10 col-md-offset-1">
       <h1>Contact Me</h1>
       <hr>
       <form>

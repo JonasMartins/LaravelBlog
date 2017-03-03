@@ -15,6 +15,16 @@
           <label for="slug">Slug:</label>
           <textarea type="text" class="form-control input-lg" id="slug" name="slug" rows="1" style="resize:none;">{{ $post->slug }}</textarea>
         </div>
+        
+        <div class="form-group">
+          <label for="category_id">Category</label>
+          <select class="form-control" id="category_id" name="category_id">
+            @foreach ($categories as $category){{-- adicionar selected apenas com javascript --}}
+              <option value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+          </select>
+        </div>
+
         <div class="form-group">
           <label for="body">Body:</label>
           <textarea type="text" class="form-control input-lg" id="body" name="body" rows="10">{{ $post->body }}</textarea>

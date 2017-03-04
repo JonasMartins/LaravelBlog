@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+
 use Session;
 use App\Post;
 use App\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -15,8 +17,13 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index(){
-        $posts = Post::orderBy('id','desc')->paginate(5);
-        return view('posts.index')->withPosts($posts);
+      /**
+       * get current user
+       * @var $user
+       */
+      $user = Auth::user();
+      $posts = $user->posts()->orderBy('id','desc')->paginate(5);
+      return view('posts.index')->withPosts($posts);
     }
 
     /**
@@ -40,7 +47,7 @@ class PostController extends Controller
       $this->validate($request, [
         'title'       => 'required|max:255',
         'slug'        => 'required|alpha_dash|min:5|max:255|unique:posts,slug',
-        'categorY_id' => 'required|integer',
+        'category_id' => 'required|integer',
         'body'        => 'required'
       ]);
       /* Se passar daqui as validações forama compridas não precisa de if elses ??...*/

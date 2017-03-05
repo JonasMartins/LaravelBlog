@@ -7,8 +7,11 @@
     <title>Laravel Blog @yield('title')</title>
     <!-- CHANGE THIS TITLE FOR EACH PAGE -->
 
-    <!-- Bootstrap -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- Bootstrap Tradicional-->
+    {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> --}}
+
+    {{-- Bootstrap Slade --}}
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/bootstrap_slate_theme.min.css') }}">
 
     @yield('stylesheets')
 

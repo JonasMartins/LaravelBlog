@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 
 use Session;
+use App\Tag;
 use App\Post;
 use App\Category;
 use Illuminate\Http\Request;
@@ -33,7 +34,8 @@ class PostController extends Controller
      */
     public function create(){
       $categories = Category::all();
-      return view('posts.create')->withCategories($categories);
+      $tags = Tag::all(); 
+      return view('posts.create')->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -56,8 +58,12 @@ class PostController extends Controller
       $post->slug = $request->slug;
       $post->category_id = $request->category_id;
       $post->body = $request->body;
-
       $request->user()->posts()->save($post);
+      /* false impede que se sobrescreva as relações anteriores.
+      sync é a função exata para poder usar o many to many simples assim, onde
+      passamos o array de elementos que queremos passar na criação do novo post.*/
+      $post->tags()->sync($request->tags, false);
+
 
       Session::flash('success', 'Post Save!');
       return redirect()->route('posts.show', $post->id);
@@ -83,7 +89,8 @@ class PostController extends Controller
     public function edit($id){
       $post = Post::find($id);
       $categories = Category::all();
-      return view('posts.edit')->withPost($post)->withCategories($categories);
+      $tags = Tag::all(); 
+      return view('posts.edit')->withPost($post)->withCategories($categories)->withTags($tags);
     }
 
     /**
@@ -115,6 +122,13 @@ class PostController extends Controller
       $post->category_id = $request->category_id;
       $post->body = $request->input('body');
       $post->update();
+      /* evitar erro de apagar todas as tags na hora da edição */
+      if (isset($request->tags)) {
+        $post->tags()->sync($request->tags, true);
+      } else {
+        $post->tags()->sync(array());
+      }
+
       Session::flash('success', 'Post Updated!');
       return redirect()->route('posts.show', $post->id); 
     }

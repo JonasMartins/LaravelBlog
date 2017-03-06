@@ -17,6 +17,7 @@ Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
 Route::get('about','PagesController@getAbout');
 Route::get('contact','PagesController@getContact');
 Route::resource('posts', 'PostController');
+Route::resource('tags', 'TagController', ['except' => ['create']]);
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 Auth::routes();
 Route::get('/home', 'HomeController@index');

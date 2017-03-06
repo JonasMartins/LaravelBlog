@@ -3,6 +3,7 @@
 @section('stylesheets')
   <link rel="stylesheet" type="text/css" href="{{ asset('css/parsley.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" type="text/css" href="{{ asset('css/select2.min.css') }}">
 @endsection
 @section('content')
   <div class="row">
@@ -16,7 +17,6 @@
           <label for="slug">Slug:</label>
           <textarea type="text" class="form-control input-lg" id="slug" name="slug" rows="1" style="resize:none;">{{ $post->slug }}</textarea>
         </div>
-        
         <div class="form-group">
           <label for="category_id">Category</label>
           <select class="form-control" id="category_id" name="category_id">
@@ -25,7 +25,14 @@
             @endforeach
           </select>
         </div>
-
+        <div class="form-group">
+          <label for="tags">Tags</label>
+          <select class="form-control select2-multi" id="tags" name="tags[]" multiple="true">
+            @foreach ($tags as $tag)
+              <option value="{{$tag->id}}">{{$tag->name}}</option>
+            @endforeach
+          </select>
+        </div>
         <div class="form-group">
           <label for="body">Body:</label>
           <textarea type="text" class="form-control input-lg" id="body" name="body" rows="10">{{ $post->body }}</textarea>
@@ -58,15 +65,16 @@
         </div>
       </form>﻿        
     </div>
-    
-    
-      
-
-
 @endsection
 @section('scripts')
   <script type="text/javascript" src="{{ asset('js/parsley.min.js') }}"></script>
   {{-- font awesome --}}
   <script src="https://use.fontawesome.com/7a9bd1ec22.js"></script>
   <script src="{{ asset('js/myscript.js') }}" type="text/javascript"></script>
+  <script type="text/javascript" src="{{ asset('js/select2.min.js') }}"></script>
+  <script type="text/javascript">
+    $('.select2-multi').select2();
+    $('.select2-multi').select2().val({{ json_encode($post->tags()->pluck('tag_id')->toArray()) }}).trigger('change');
+
+  </script>
 @endsection

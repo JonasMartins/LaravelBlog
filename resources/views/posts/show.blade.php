@@ -9,7 +9,7 @@
       <h1>{{ $post->title }}</h1>
       <div class="tags">Tags:
         @foreach($post->tags as $tag)
-          <span class="label label-default">{{$tag->name}}</span>
+          <span class="label label-default"><a href="{{ route('tags.show', $tag->id) }}">{{$tag->name}}</a></span>
         @endforeach
       </div>
       <hr>

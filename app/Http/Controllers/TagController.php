@@ -85,8 +85,10 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy($id){
+      $tag = Tag::find($id);
+      $tag->posts()->detach();
+      $tag->delete();
+      return redirect()->route('tags.index');
     }
 }

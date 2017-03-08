@@ -26,7 +26,7 @@ class PostController extends Controller
       $posts = $user->posts()->orderBy('id','desc')->paginate(5);
       return view('posts.index')->withPosts($posts);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -141,6 +141,9 @@ class PostController extends Controller
      */
     public function destroy($id){
       $post = Post::find($id);
+      /* eliminar referencias as tags referentes a esse post apos a remoção dele */
+      $post->tags()->detach();
+
       $post->delete();
       Session::flash('success', 'Post Deleted!');
       return redirect()->route('posts.index');

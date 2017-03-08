@@ -8,3 +8,4 @@ $('#comments-button').on('click', function(){
     //$('#comment_body').focus();
   });
 });
+

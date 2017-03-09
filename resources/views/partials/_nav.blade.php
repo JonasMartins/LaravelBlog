@@ -41,6 +41,7 @@
                   <li><a href="{{route('posts.index')}}">My Posts</a></li>
                   <li><a href="{{ route('categories.index') }}">Categories</a></li>
                   <li><a href="{{ route('tags.index') }}">Tags</a></li>
+                  <li><a href="{{ route('user.profile', Auth::user()->id) }}">My Public Stuff</a></li>
                   <li role="separator" class="divider"></li>
                   <li>
                     <a href="{{ route('logout') }}"

@@ -34,4 +34,7 @@ class User extends Authenticatable
       return $this->hasMany('App\Comment');
     }
 
+    public function user_levels(){
+        return $this->belongsTo('App\UserLevel');
+    }
 }

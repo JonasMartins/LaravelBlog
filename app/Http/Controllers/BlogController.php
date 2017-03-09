@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Post;
+use App\User;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller{
 
@@ -15,7 +16,8 @@ class BlogController extends Controller{
   public function getSingle($slug){
     /* cada slug é unico*/
     $post = Post::where('slug', '=', $slug)->first();
-    return view('blog.single')->withPost($post);
+    $author = User::find($post->user_id);
+    return view('blog.single')->withPost($post)->with(['author' => $author]);
   }
 
 }

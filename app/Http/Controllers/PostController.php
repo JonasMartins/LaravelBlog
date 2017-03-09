@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use Session;
 use App\Tag;
 use App\Post;
+use App\User;
 use App\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -76,8 +77,13 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
+      $current_user = null;
       $post = Post::find($id);
-      return view('posts.show')->withPost($post);
+      $author = User::find($post->user_id);
+      if (Auth::check()){
+        $current_user = Auth::user();
+      }
+      return view('posts.show')->withPost($post)->with(['current_user' => $current_user, 'author' => $author]);
     }
 
     /**

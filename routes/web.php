@@ -16,6 +16,12 @@ Route::get('blog/{slug}', ['as' => 'blog.single', 'uses' => 'BlogController@getS
 Route::get('blog', ['uses' => 'BlogController@getIndex', 'as' => 'blog.index']);
 Route::get('about','PagesController@getAbout');
 Route::get('contact','PagesController@getContact');
+
+Route::get('profile/{user_id}', [
+  'uses' => 'UserController@getPublicProfile',
+  'as' => 'user.profile'
+  ]);
+
 Route::resource('posts', 'PostController');
 Route::resource('tags', 'TagController', ['except' => ['create']]);
 Route::resource('categories', 'CategoryController', ['except' => ['create']]);

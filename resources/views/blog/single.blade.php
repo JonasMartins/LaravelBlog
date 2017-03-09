@@ -7,13 +7,13 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <h1>{{ $post->title}}</h1>
-      <br>
       <div class="tags">Tags:
         @foreach($post->tags as $tag)
           <span class="label label-default"><a href="{{ route('tags.show', $tag->id) }}">{{$tag->name}}</a></span>
         @endforeach
       </div>
       <hr>
+      <small><i>Written By: <a href="{{ route('user.profile', $author->id) }}">{{$author->name}}</a></i></small>
       <p>{{ $post->body}}</p>
     </div>
   </div>
@@ -27,9 +27,9 @@
         {{-- renderizar os comentarios relacionado aquele post --}}
       </section>
       @if (Auth::check())  
-        <form method="POST" action="{{route('')}}">
+        {{-- <form method="POST" action="{{route('')}}">
           
-        </form>
+        </form> --}}
       @endif
     </div>
   </div>

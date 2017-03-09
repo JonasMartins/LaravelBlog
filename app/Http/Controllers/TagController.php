@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\Tag;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class TagController extends Controller
 {
@@ -14,10 +16,6 @@ class TagController extends Controller
      *
      * @return void
      */
-    public function __construct() {
-      $this->middleware('auth');
-    }
-
     /**
      * Display a listing of the resource.
      *
@@ -52,6 +50,7 @@ class TagController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show($id){
+
       $tag = Tag::find($id);
       return view('tags.show')->withTag($tag);   
     }

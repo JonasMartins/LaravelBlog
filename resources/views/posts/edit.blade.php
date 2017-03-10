@@ -4,6 +4,16 @@
   <link rel="stylesheet" type="text/css" href="{{ asset('css/parsley.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/style.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/select2.min.css') }}">
+  {{-- tinymce editor --}}
+  <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script type="text/javascript">
+    tinymce.init({
+      selector: 'textarea',
+      /* Caso queria adicionar plugins onde podemos ver varias outras funcionalidades basta procurar na 
+      documentação que pode ser encontrada no site*/
+      plugins: 'link'
+    });
+  </script>
 @endsection
 @section('content')
   <div class="row">
@@ -11,11 +21,11 @@
       <div class="col-md-8">
         <div class="form-group">
           <label for="title">Title:</label>
-          <textarea type="text" class="form-control input-lg" id="title" name="title" rows="1" style="resize:none;">{{ $post->title }}</textarea>
+          <input type="text" class="form-control input-lg" id="title" name="title" rows="1" style="resize:none;" value="{{ $post->title }}">
         </div>
         <div class="form-group">
           <label for="slug">Slug:</label>
-          <textarea type="text" class="form-control input-lg" id="slug" name="slug" rows="1" style="resize:none;">{{ $post->slug }}</textarea>
+          <input type="text" class="form-control input-lg" id="slug" name="slug" rows="1" style="resize:none;" value="{{ $post->slug }}">
         </div>
         <div class="form-group">
           <label for="category_id">Category</label>

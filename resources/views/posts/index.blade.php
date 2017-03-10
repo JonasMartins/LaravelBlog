@@ -33,7 +33,7 @@
               <tr>
                 {{-- <th>{{ $post->id }}</th> --}}
                 <td><h4>{{ $post->title }}</h4></td>
-                <td><h4>{{ substr($post->body, 0, 40) }}{{ strlen($post->body) > 50 ? "..." : "" }}</h4></td>
+                <td><h4>{{ substr(strip_tags( $post->body, 0, 40) ) }}{{ strlen(strip_tags($post->body) ) > 50 ? "..." : "" }}</h4></td>
                 <td><h4>{{ date('M j, Y', strtotime($post->created_at)) }}</h4></td>
                 <td>
                   <button class="btn btn-default btn-circle" data-toggle="tooltip" title="View Post" 

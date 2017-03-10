@@ -29,7 +29,7 @@
             </tr>
             <tr>
               <th scope="row">level</th>
-              <td>*******</td>
+              <td>{{$level}}</td>
             </tr>
             </tbody>
         </table>

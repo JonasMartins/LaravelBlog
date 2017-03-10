@@ -14,7 +14,7 @@
       </div>
       <hr>
       <small><i>Written By: <a href="{{ route('user.profile', $author->id) }}">{{$author->name}}</a></i></small>
-      <p>{{ $post->body}}</p>
+      <p>{!! $post->body !!}</p>
     </div>
   </div>
   <div class="row">

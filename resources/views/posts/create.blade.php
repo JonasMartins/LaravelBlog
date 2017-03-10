@@ -3,6 +3,16 @@
 @section('stylesheets')
   <link rel="stylesheet" type="text/css" href="{{ asset('css/parsley.css') }}">
   <link rel="stylesheet" type="text/css" href="{{ asset('css/select2.min.css') }}">
+   {{-- tinymce editor --}}
+  <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
+  <script type="text/javascript">
+    tinymce.init({
+      selector: 'textarea',
+      /* Caso queria adicionar plugins onde podemos ver varias outras funcionalidades basta procurar na 
+      documentação que pode ser encontrada no site*/
+      plugins: 'link'
+    });
+  </script>
 @endsection
 @section('content')
 
@@ -56,10 +66,11 @@
             @endforeach
           </select>
         </div>
-
+        {{--  o required do body foi retirado por conta do erro com o editor de texto, ele acusa erro mesmo
+        que haja texto no campo, uma questão técnica do plugin do js, a validação ainda funciona no model. --}}
         <div class="form-group">
           <label name="body">Post Body:</label>
-          <textarea id="body" name="body" rows="10" class="form-control" required=""></textarea>
+          <textarea id="body" name="body" rows="10" class="form-control"></textarea>
         </div>
 
         <input type="submit" value="Create Post" class="btn btn-success btn-lg btn-block">
@@ -71,6 +82,7 @@
 @section('scripts')
   <script type="text/javascript" src="{{ asset('js/parsley.min.js') }}"></script>
   <script type="text/javascript" src="{{ asset('js/select2.min.js') }}"></script>
+
   <script type="text/javascript">
     /*plugin*/
     $('.select2-multi').select2();

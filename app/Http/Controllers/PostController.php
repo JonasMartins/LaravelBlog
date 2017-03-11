@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use App\Tag;
-use App\Post;
+  use App\Post;
 use App\User;
 use App\Category;
 use Illuminate\Http\Request;

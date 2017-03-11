@@ -42,13 +42,13 @@
           <div class="row">
             <div class="col-sm-4">
             {{-- {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!} --}}
-              <button class="btn btn-default btn-circle btn-lg" data-toggle="tooltip" title="My Posts" 
-                    data-placement="bottom" onclick='location.href = "{{ route('posts.index') }}";'><i class="fa fa-home" aria-hidden="true"></i></button>
+              <button class="btn btn-default" data-toggle="tooltip" title="My Posts" 
+                    data-placement="bottom" onclick='location.href = "{{ route('posts.index') }}";'>Posts</button>
             </div>
             <div class="col-sm-4">
             {{-- {!! Html::linkRoute('posts.edit', 'Edit', array($post->id), array('class' => 'btn btn-primary btn-block')) !!} --}}
-              <button class="btn btn-primary btn-circle btn-lg" data-toggle="tooltip" title="Edit Post" 
-                    data-placement="bottom" onclick='location.href = "{{ route('posts.edit', $post->id) }}";'><i class="fa fa-pencil" aria-hidden="true"></i></button>
+              <button class="btn btn-warning" data-toggle="tooltip" title="Edit Post" 
+                    data-placement="bottom" onclick='location.href = "{{ route('posts.edit', $post->id) }}";'>Edit</button>
             </div>
             <div class="col-sm-4">
             {{-- {!! Html::linkRoute('posts.destroy', 'Delete', array($post->id), array('class' => 'btn btn-danger btn-block')) !!}
@@ -66,8 +66,8 @@
             --}}
              <form method="POST" action="{{ route('posts.destroy', $post->id) }}">
               {{-- <input type="submit" value="Delete" class="btn btn-danger btn-circle btn-lg"> --}}
-              <button class="btn btn-danger btn-circle btn-lg" data-toggle="tooltip" title="Delete Post" 
-                    data-placement="bottom"><i class="fa fa-times" aria-hidden="true"></i></button>
+              <button class="btn btn-danger" data-toggle="tooltip" title="Delete Post" 
+                    data-placement="bottom">Delete</button>
               <input type="hidden" name="_token" value="{{ Session::token() }}">
                {{ method_field('DELETE') }}
             </div>
@@ -78,7 +78,5 @@
   </div>
 @endsection
 @section('scripts')
-  {{-- font awesome --}}
-  <script src="https://use.fontawesome.com/7a9bd1ec22.js"></script>
-  <script src="{{ asset('js/myscript.js') }}" type="text/javascript"></script>
+   <script src="{{ asset('js/myscript.js') }}" type="text/javascript"></script>
 @endsection

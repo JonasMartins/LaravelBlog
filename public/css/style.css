@@ -19,3 +19,7 @@
 #comments-section {
   display: none;
 }
+
+span.label.label-default a {
+  color: white;
+}

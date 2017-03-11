@@ -9,8 +9,8 @@
       <h1>My Posts</h1>
     </div>
     <div class="col-md-2 col-md-offset-2"> 
-       <button class="btn btn-success btn-circle btn-lg" data-toggle="tooltip" title="Create New Post" data-placement="bottom"
-       onclick='location.href = "{{ route('posts.create') }}";'><i class="fa fa-plus" aria-hidden="true"></i></button>
+       <button class="btn btn-success" data-toggle="tooltip" title="Create New Post" data-placement="bottom"
+       onclick='location.href = "{{ route('posts.create') }}";'>New Post</button>
     </div>
     <div class="col-md-12">
       <hr>
@@ -32,16 +32,20 @@
             @foreach ($posts as $post)
               <tr>
                 {{-- <th>{{ $post->id }}</th> --}}
+
+                {{-- Antes com os icones, muito ineficiente
+                  <img src=" {{URL::asset('/images/icons/glyphicons-31-pencil.png') }} "> 
+                --}}
                 <td><h4>{{ $post->title }}</h4></td>
-                <td><h4>{{ substr(strip_tags( $post->body, 0, 40) ) }}{{ strlen(strip_tags($post->body) ) > 50 ? "..." : "" }}</h4></td>
+                <td><h4>{{ substr( strip_tags($post->body), 0, 40) }}{{ strlen( strip_tags($post->body) ) > 50 ? "..." : "" }}</h4></td>
                 <td><h4>{{ date('M j, Y', strtotime($post->created_at)) }}</h4></td>
                 <td>
-                  <button class="btn btn-default btn-circle" data-toggle="tooltip" title="View Post" 
-                  data-placement="bottom" onclick='location.href = "{{ route('posts.show', $post->id) }}";'><i class="fa fa-eye" aria-hidden="true"></i></button>
-                  <button class="btn btn-primary btn-circle" data-toggle="tooltip" title="Edit Post" 
-                  data-placement="bottom" onclick='location.href = "{{ route('posts.edit', $post->id) }}";'><i class="fa fa-pencil" aria-hidden="true"></i></button>
-                  <button class="btn btn-danger btn-circle" data-toggle="tooltip" title="Delete Post" 
-                  data-placement="bottom" onclick='location.href = "{{ route('posts.show', $post->id) }}";'><i class="fa fa-times" aria-hidden="true"></i></button>
+                  <button class="btn btn-default btn-sm" data-toggle="tooltip" title="View Post" 
+                  data-placement="bottom" onclick='location.href = "{{ route('posts.show', $post->id) }}";'>View</button>
+                  <button class="btn btn-warning btn-sm" data-toggle="tooltip" title="Edit Post" 
+                  data-placement="bottom" onclick='location.href = "{{ route('posts.edit', $post->id) }}";'>Edit</button>
+                  <button class="btn btn-danger btn-sm" data-toggle="tooltip" title="Delete Post" 
+                  data-placement="bottom" onclick='location.href = "{{ route('posts.show', $post->id) }}";'>Delete</button>
                   {{-- <a href="{{ route('posts.show', $post->id) }}" class="btn btn-primary btn-sm">View</a> <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-warning btn-sm">Edit</a> <a href="#" class="btn btn-danger btn-sm">Delete
                   </a> --}}
                 </td>
@@ -57,7 +61,7 @@
   </div>
 @stop
 @section('scripts')
-  {{-- font awesome --}}
-  <script src="https://use.fontawesome.com/7a9bd1ec22.js"></script>
+  {{-- font awesome 
+  <script src="https://use.fontawesome.com/7a9bd1ec22.js"></script>--}}
   <script src="{{ asset('js/myscript.js') }}" type="text/javascript"></script>
 @endsection

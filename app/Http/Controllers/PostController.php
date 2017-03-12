@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 
 use Session;
+use Purifier;
+
 use App\Tag;
-  use App\Post;
+use App\Post;
 use App\User;
 use App\Category;
 use Illuminate\Http\Request;
@@ -58,7 +60,9 @@ class PostController extends Controller
       $post->title = $request->title;
       $post->slug = $request->slug;
       $post->category_id = $request->category_id;
-      $post->body = $request->body;
+      /* Alterando as configurações de segurança dos posts 
+      $post->body = Purifier::clean($request->body, 'youtube');*/
+      $post->body = Purifier::clean($request->body);
       $request->user()->posts()->save($post);
       /* false impede que se sobrescreva as relações anteriores.
       sync é a função exata para poder usar o many to many simples assim, onde
@@ -126,7 +130,7 @@ class PostController extends Controller
       $post->title = $request->input('title');
       $post->slug = $request->input('slug');
       $post->category_id = $request->category_id;
-      $post->body = $request->input('body');
+      $post->body = Purifier::clean($request->input('body'));
       $post->update();
       /* evitar erro de apagar todas as tags na hora da edição */
       if (isset($request->tags)) {

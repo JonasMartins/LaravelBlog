@@ -9,3 +9,13 @@ php artisan make:controller PostController --resource
 
 Listando rotas:
 php artisan rout:list
+
+
+Adicionar biblioteca de segurança html:
+
+composer require news/purifier
+Explicações: https://www.youtube.com/watch?v=_md2zRrPAhA&list=PLwAKR305CRO-Q90J---jXVzbOd4CDRbVx&index=52
+
+Jeito correto:
+"mews/purifier": "2.0.3" em require dentro do arquivo composer depois
+composer instll/ update

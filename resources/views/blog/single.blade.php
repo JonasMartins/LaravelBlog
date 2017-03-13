@@ -6,6 +6,9 @@
 @section('content')
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
+    @if($post->image) 
+      <img src="{{ asset('images/posts/' . $post->image) }}" height="300" width="720" />
+    @endif
       <h1>{{ $post->title}}</h1>
       <div class="tags">Tags:
         @foreach($post->tags as $tag)

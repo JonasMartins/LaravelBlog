@@ -5,7 +5,8 @@ use App\Post;
 class PagesController extends Controller {
 
 	public function getIndex(){
-		$posts = Post::orderBy('created_at', 'desc')->limit(4)->get();
+		/* pegando apenas os ultimos 4 posts*/
+		$posts = Post::orderBy('created_at', 'desc')->limit(3)->get();
     return view('pages.welcome')->withPosts($posts);
 	}
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 
 use Session;
 use Purifier;
+use Image;
 
 use App\Tag;
 use App\Post;
@@ -63,6 +64,28 @@ class PostController extends Controller
       /* Alterando as configurações de segurança dos posts 
       $post->body = Purifier::clean($request->body, 'youtube');*/
       $post->body = Purifier::clean($request->body);
+      /* images upload */
+      if ($request->hasFile('featured_image')){
+        $image = $request->file('featured_image');
+        $filename = time() . '.' . $image->getClientOriginalExtension();
+        $location = public_path('images/posts/' . $filename);
+
+        /**
+         * Biblioteca usada para fazer upload das imagens da forma correta:
+         * http://image.intervention.io
+         * 
+         * atamanho padrão de imagens com a resolução ideal para aparecer no carousel 
+         * @param $image: Imagem a ser salva que foi devidamente gerada acima.
+         * @param $location: Local onde a image deve ser salva, notat que na pasta public podemos
+         * vê-la pela url 
+         */
+        Image::make($image)->resize(720, 300)->save($location);
+        $post->image = $filename;
+      }
+
+
+
+
       $request->user()->posts()->save($post);
       /* false impede que se sobrescreva as relações anteriores.
       sync é a função exata para poder usar o many to many simples assim, onde

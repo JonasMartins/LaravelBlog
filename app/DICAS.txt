@@ -19,3 +19,8 @@ Explicações: https://www.youtube.com/watch?v=_md2zRrPAhA&list=PLwAKR305CRO-Q90
 Jeito correto:
 "mews/purifier": "2.0.3" em require dentro do arquivo composer depois
 composer instll/ update
+
+
+caso dê o erro: GD Library extension not available with this PHP installation Ubuntu 
+
+basta instalar a library que falta: sudo apt-get install php7.0-gd

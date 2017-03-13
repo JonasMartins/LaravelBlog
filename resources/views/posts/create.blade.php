@@ -40,7 +40,10 @@
       {!! Form::close() !!}
        --}}
 
-      <form method="POST" action="{{ route('posts.store') }}" data-parsley-validate>
+       {{-- The form also needs the following attribute: enctype="multipart/form-data". 
+       It specifies which content-type to use when submitting the form --}}
+
+      <form method="POST" action="{{ route('posts.store') }}" data-parsley-validate enctype="multipart/form-data">
         <div class="form-group">
           <label name="title">Title:</label>
           <input id="title" name="title" required="" maxlength="255" class="form-control">
@@ -66,6 +69,11 @@
             @endforeach
           </select>
         </div>
+        <div class="form-group">
+          <label for="featured_image">Upload Featured Image</label>
+          <input type="file" name="featured_image" accept="image/gif, image/jpeg, image/png" />
+        </div>
+
         {{--  o required do body foi retirado por conta do erro com o editor de texto, ele acusa erro mesmo
         que haja texto no campo, uma questão técnica do plugin do js, a validação ainda funciona no model. --}}
         <div class="form-group">

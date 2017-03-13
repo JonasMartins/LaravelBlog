@@ -14,6 +14,9 @@
       </div>
       <hr>
       <small><i>Written By: <a href="{{ route('user.profile', $author->id) }}">{{$author->name}}</a></i></small>
+      @if($post->image)
+        <img src="{{ asset('images/posts/' . $post->image) }}" height="300" width="720" />
+      @endif
       <p class="lead">{!! $post->body !!}</p>
     </div>
 
